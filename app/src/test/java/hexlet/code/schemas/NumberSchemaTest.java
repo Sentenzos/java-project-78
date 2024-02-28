@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NumberSchemaTest {
-
     @Test
     public void test() {
         NumberSchema schema = new NumberSchema();

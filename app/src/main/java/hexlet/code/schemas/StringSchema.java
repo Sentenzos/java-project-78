@@ -1,6 +1,6 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
-public class StringSchema extends BaseSchema {
+public class StringSchema extends BaseSchema<String> {
     private String substring = null;
     private Integer minLength = null;
 
@@ -25,7 +25,7 @@ public class StringSchema extends BaseSchema {
                 && checkContains(testString);
     }
 
-    private boolean checkRequired(String testString) {
+    protected boolean checkRequired(String testString) {
         if (!this.isRequired) {
             return true;
         } else {

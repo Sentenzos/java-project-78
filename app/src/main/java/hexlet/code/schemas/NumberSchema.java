@@ -1,6 +1,6 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
-public class NumberSchema extends BaseSchema {
+public class NumberSchema extends BaseSchema<Integer> {
     private boolean isPositive = false;
     private Integer[] range = new Integer[2];
 
@@ -24,14 +24,6 @@ public class NumberSchema extends BaseSchema {
         return checkRequired(testNumber)
                 && checkPositive(testNumber)
                 && checkRange(testNumber);
-    }
-
-    private boolean checkRequired(Integer testNumber) {
-        if (!this.isRequired) {
-            return true;
-        } else {
-            return testNumber != null;
-        }
     }
 
     private boolean checkPositive(Integer testNumber) {
