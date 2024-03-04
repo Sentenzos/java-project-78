@@ -1,18 +1,25 @@
 package hexlet.code.schemas;
 
-public abstract class BaseSchema<T> {
-    boolean isRequired = false;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 
-    public BaseSchema<T> required() {
+public abstract class BaseSchema<T> {
+    protected boolean isRequired = false;
+    protected Map<String, Predicate<T>> checkList = new LinkedHashMap<>();
+
+    protected BaseSchema<T> required() {
         this.isRequired = true;
         return this;
     }
 
-    protected boolean checkRequired(T value) {
-        if (!this.isRequired) {
-            return true;
-        } else {
-            return value != null;
+    protected boolean isValid(T value) {
+        if (this.isRequired && value == null) {
+            return false;
         }
+
+        return checkList.values()
+                .stream()
+                .allMatch(predicate -> predicate.test(value));
     }
 }

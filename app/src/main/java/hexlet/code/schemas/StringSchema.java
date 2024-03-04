@@ -1,55 +1,24 @@
 package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchema<String> {
-    private String substring = null;
-    private Integer minLength = null;
-
     public StringSchema required() {
+        this.checkList.put("required", string -> !string.isEmpty());
         super.required();
         return this;
     }
 
     public StringSchema minLength(Integer length) {
-        this.minLength = length;
+        this.checkList.put("minLength", string -> {
+            System.out.println("minLength  " + length);
+            System.out.println("string  " + string.length());
+            System.out.println(length <= string.length());
+            return length <= string.length();
+        });
         return this;
     }
 
-    public StringSchema contains(String string) {
-        this.substring = string;
+    public StringSchema contains(String substring) {
+        this.checkList.put("contains", string -> string.contains(substring));
         return this;
-    }
-
-    public boolean isValid(String testString) {
-        return checkRequired(testString)
-                && checkMinLength(testString)
-                && checkContains(testString);
-    }
-
-    protected boolean checkRequired(String testString) {
-        if (!this.isRequired) {
-            return true;
-        } else {
-            return testString != null && !testString.isEmpty();
-        }
-    }
-
-    private boolean checkMinLength(String testString) {
-        if (this.minLength == null) {
-            return true;
-        } else if (testString == null) {
-            return false;
-        } else {
-            return this.minLength <= testString.length();
-        }
-    }
-
-    private boolean checkContains(String testString) {
-        if (substring == null) {
-            return true;
-        } else if (testString == null) {
-            return false;
-        } else {
-            return testString.contains(this.substring);
-        }
     }
 }

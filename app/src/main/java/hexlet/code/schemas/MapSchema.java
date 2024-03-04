@@ -2,29 +2,23 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-public class MapSchema extends BaseSchema<Map<Object, Object>> {
-    private Integer sizeof = null;
-
-    public MapSchema required() {
-        super.required();
-        return this;
-    }
-
+public class MapSchema extends BaseSchema<Map<?, ?>> {
     public MapSchema sizeof(Integer size) {
-        this.sizeof = size;
+        checkList.put("sizeof", map -> map.size() == size);
         return this;
     }
 
-    public boolean isValid(Map<Object, Object> map) {
-        return checkRequired(map)
-                && checkSizeof(map);
-    }
-
-    private boolean checkSizeof(Map<Object, Object> map) {
-        if (sizeof == null) {
+    public <T> MapSchema shape(Map<?, BaseSchema<T>> schemas) {
+        checkList.put("shape", map -> {
+            for (var schema: schemas.entrySet()) {
+                var valueToCheck = (T) map.get(schema.getKey());
+                if (!schema.getValue().isValid(valueToCheck)) {
+                    return false;
+                }
+            }
             return true;
-        } else {
-            return map.size() == sizeof;
-        }
+        });
+
+        return this;
     }
 }
