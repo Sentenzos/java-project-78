@@ -3,6 +3,11 @@ package hexlet.code.schemas;
 import java.util.Map;
 
 public class MapSchema extends BaseSchema<Map<?, ?>> {
+    public MapSchema required() {
+        super.required();
+        return this;
+    }
+
     public MapSchema sizeof(Integer size) {
         checkList.put("sizeof", map -> map.size() == size);
         return this;

@@ -1,6 +1,11 @@
 package hexlet.code.schemas;
 
 public class NumberSchema extends BaseSchema<Integer> {
+    public NumberSchema required() {
+        super.required();
+        return this;
+    }
+
     public NumberSchema positive() {
         checkList.put("positive", number -> number == null || number > 0);
         return this;
