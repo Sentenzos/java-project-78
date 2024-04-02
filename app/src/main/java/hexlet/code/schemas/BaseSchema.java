@@ -8,6 +8,9 @@ public abstract class BaseSchema<T> {
     protected boolean isRequired = false;
     protected Map<String, Predicate<T>> checkList = new LinkedHashMap<>();
 
+    /** Checks that all validations are pass.
+     * @return true if all validations passed, false otherwise
+     */
     public boolean isValid(T value) {
         if (value == null) {
             return !this.isRequired;
