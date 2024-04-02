@@ -117,8 +117,3 @@ make install
 ```bash
 make build
 ```
-
-## Run
-```bash
-make run-dist
-```
