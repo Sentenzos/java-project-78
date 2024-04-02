@@ -107,13 +107,3 @@ human3.put("firstName", "Anna");
 human3.put("lastName", "B");
 schema.isValid(human3); // false
 ```
-
-## Install
-```bash
-make install
-```
-
-## Build
-```bash
-make build
-```
