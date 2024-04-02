@@ -8,11 +8,6 @@ public abstract class BaseSchema<T> {
     protected boolean isRequired = false;
     protected Map<String, Predicate<T>> checkList = new LinkedHashMap<>();
 
-    /**
-     *
-     * @param value
-     * @return this
-     */
     public boolean isValid(T value) {
         if (value == null) {
             return !this.isRequired;
