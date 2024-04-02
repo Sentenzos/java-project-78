@@ -10,21 +10,12 @@ public abstract class BaseSchema<T> {
 
     /**
      *
-     * @return this
-     */
-    public BaseSchema<T> required() {
-        this.isRequired = true;
-        return this;
-    }
-
-    /**
-     *
      * @param value
      * @return this
      */
     public boolean isValid(T value) {
-        if (this.isRequired && value == null) {
-            return false;
+        if (value == null) {
+            return !this.isRequired;
         }
 
         return checkList.values()
