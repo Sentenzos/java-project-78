@@ -9,6 +9,7 @@ public abstract class BaseSchema<T> {
     protected Map<String, Predicate<T>> checkList = new LinkedHashMap<>();
 
     /** Checks that all validations are pass.
+     * @param value
      * @return true if all validations passed, false otherwise
      */
     public boolean isValid(T value) {
